@@ -33,11 +33,7 @@ public class HealthCheckController {
         response.put("status", "OK");
         return ResponseEntity.ok(response);
     }
-
-    @GetMapping("/v5")
-    public ResponseEntity<HealthCheckResponse> healthCheckV5() {
-        return ResponseEntity.ok(new HealthCheckResponse("success"));
-    }
+    
 
     @GetMapping("/v6")
     public SuccessResponse healthCheckV6() {
