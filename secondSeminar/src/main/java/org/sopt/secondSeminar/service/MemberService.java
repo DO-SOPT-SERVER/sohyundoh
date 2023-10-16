@@ -8,7 +8,7 @@ import org.sopt.secondSeminar.domain.SOPT;
 import org.sopt.secondSeminar.dto.request.MemberCreateRequest;
 import org.sopt.secondSeminar.dto.request.MemberProfileUpdateRequest;
 import org.sopt.secondSeminar.dto.response.MemberGetResponse;
-import org.sopt.secondSeminar.exception.Error;
+import org.sopt.secondSeminar.exception.ErrorMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +24,7 @@ public class MemberService {
 
     public MemberGetResponse getById(Long memberId) {
         return MemberGetResponse.of(memberRepository.findById(memberId)
-                .orElseThrow(() -> new EntityNotFoundException(Error.MEMBER_NOT_FOUND_EXCEPTION.getMessage())));
+                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION.getMessage())));
     }
 
 
@@ -44,11 +44,11 @@ public class MemberService {
     @Transactional
     public void updateSOPT(Long memberId, MemberProfileUpdateRequest updateRequest) {
         Member member = memberRepository.findByIdOrThrow(memberId);
-        member.updateSOPT(new SOPT(updateRequest.getGeneration(), updateRequest.getPart()));
+        member.updateSOPT(new SOPT(updateRequest.generation(), updateRequest.part()));
     }
 
     @Transactional
-    public void deleteMember(Long memberId) {
+    public void delete(Long memberId) {
         Member member = memberRepository.findByIdOrThrow(memberId);
         memberRepository.delete(member);
     }

@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum Success {
+public enum SuccessMessage {
 
     MEMBER_CREATE_SUCCESS(HttpStatus.CREATED, "사용자 정보가 생성되었습니다."),
     MEMBER_SEARCH_SUCCESS(HttpStatus.OK, "사용자 정보가 조회되었습니다 "),

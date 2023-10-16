@@ -21,8 +21,6 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private Long id;
-
-    @Column(updatable = false)
     private String name;
     private String nickname;
     private int age;
@@ -40,10 +38,10 @@ public class Member {
 
     public static Member create(MemberCreateRequest request) {
         return Member.builder()
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .age(request.getAge())
-                .sopt(request.getSopt())
+                .name(request.name())
+                .nickname(request.nickname())
+                .age(request.age())
+                .sopt(request.sopt())
                 .build();
     }
 

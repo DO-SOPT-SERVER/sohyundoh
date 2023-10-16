@@ -7,7 +7,7 @@ import org.sopt.secondSeminar.common.dto.SuccessResponse;
 import org.sopt.secondSeminar.dto.request.MemberCreateRequest;
 import org.sopt.secondSeminar.dto.request.MemberProfileUpdateRequest;
 import org.sopt.secondSeminar.dto.response.MemberGetResponse;
-import org.sopt.secondSeminar.exception.Success;
+import org.sopt.secondSeminar.exception.SuccessMessage;
 import org.sopt.secondSeminar.service.MemberService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -32,31 +31,31 @@ public class MemberController {
     @GetMapping(value = "{memberId}/V2", produces = MediaType.APPLICATION_JSON_VALUE)
     public SuccessResponse<MemberGetResponse> getMemberProfileV2(
             @PathVariable("memberId") Long memberId) {
-        return SuccessResponse.success(Success.MEMBER_SEARCH_SUCCESS, memberService.getById(memberId));
+        return SuccessResponse.success(SuccessMessage.MEMBER_SEARCH_SUCCESS, memberService.getById(memberId));
     }
 
     @PostMapping
     public SuccessResponse createMember(@RequestBody MemberCreateRequest request, HttpServletResponse response) {
         String location = "api/member/" + memberService.create(request);
         response.setHeader("Location", location);
-        return SuccessResponse.success(Success.MEMBER_CREATE_SUCCESS);
+        return SuccessResponse.success(SuccessMessage.MEMBER_CREATE_SUCCESS);
     }
 
     @GetMapping
     public SuccessResponse<List<MemberGetResponse>> getMembersProfile() {
-        return SuccessResponse.success(Success.ALL_MEMBERS_SEARCH_SUCCESS, memberService.getMembers());
+        return SuccessResponse.success(SuccessMessage.ALL_MEMBERS_SEARCH_SUCCESS, memberService.getMembers());
     }
 
     @PatchMapping("/{memberId}")
     public SuccessResponse updateMemberSoptInfo(@PathVariable Long memberId,
                                                 @RequestBody MemberProfileUpdateRequest request) {
         memberService.updateSOPT(memberId, request);
-        return SuccessResponse.success(Success.MEMBER_UPDATE_SUCCESS);
+        return SuccessResponse.success(SuccessMessage.MEMBER_UPDATE_SUCCESS);
     }
 
     @DeleteMapping("/{memberId}")
     public SuccessResponse deleteMember(@PathVariable Long memberId) {
-        memberService.deleteMember(memberId);
-        return SuccessResponse.success(Success.MEMBER_DELETE_SUCCESS);
+        memberService.delete(memberId);
+        return SuccessResponse.success(SuccessMessage.MEMBER_DELETE_SUCCESS);
     }
 }
