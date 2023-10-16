@@ -27,7 +27,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
-    private static final String LOCATION_PREFIX = "api/member";
+    private static final String LOCATION_PREFIX = "api/member/";
 
     @GetMapping(value = "{memberId}/V2", produces = MediaType.APPLICATION_JSON_VALUE)
     public SuccessResponse<MemberGetResponse> getMemberProfileV2(
