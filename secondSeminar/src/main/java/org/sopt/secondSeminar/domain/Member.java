@@ -1,5 +1,6 @@
 package org.sopt.secondSeminar.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.sopt.secondSeminar.dto.request.MemberCreateRequest;
 
 @Entity
 @Getter
@@ -17,7 +19,10 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
+
+    @Column(updatable = false)
     private String name;
     private String nickname;
     private int age;
@@ -26,11 +31,20 @@ public class Member {
     private SOPT sopt;
 
     @Builder
-    public Member(String name, String nickname, int age, SOPT sopt) {
+    private Member(String name, String nickname, int age, SOPT sopt) {
         this.name = name;
         this.nickname = nickname;
         this.age = age;
         this.sopt = sopt;
+    }
+
+    public static Member create(MemberCreateRequest request) {
+        return Member.builder()
+                .name(request.getName())
+                .nickname(request.getNickname())
+                .age(request.getAge())
+                .sopt(request.getSopt())
+                .build();
     }
 
     public void updateSOPT(SOPT sopt) {

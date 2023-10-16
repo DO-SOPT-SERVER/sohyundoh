@@ -8,6 +8,7 @@ import org.sopt.secondSeminar.domain.SOPT;
 import org.sopt.secondSeminar.dto.request.MemberCreateRequest;
 import org.sopt.secondSeminar.dto.request.MemberProfileUpdateRequest;
 import org.sopt.secondSeminar.dto.response.MemberGetResponse;
+import org.sopt.secondSeminar.exception.Error;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,19 +21,12 @@ import java.util.stream.Collectors;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public MemberGetResponse getByIdV1(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
-        return MemberGetResponse.of(member);
-    }
 
-    public MemberGetResponse getByIdV2(Long memberId) {
+    public MemberGetResponse getById(Long memberId) {
         return MemberGetResponse.of(memberRepository.findById(memberId)
-                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 회원입니다.")));
+                .orElseThrow(() -> new EntityNotFoundException(Error.MEMBER_NOT_FOUND_EXCEPTION.getMessage())));
     }
 
-    public MemberGetResponse getByIdV3(Long memberId) {
-        return MemberGetResponse.of(memberRepository.findByIdOrThrow(memberId));
-    }
 
     public List<MemberGetResponse> getMembers() {
         return memberRepository.findAll()
@@ -43,12 +37,7 @@ public class MemberService {
 
     @Transactional
     public String create(MemberCreateRequest request) {
-        Member member = memberRepository.save(Member.builder()
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .age(request.getAge())
-                .sopt(request.getSopt())
-                .build());
+        Member member = memberRepository.save(Member.create(request));
         return member.getId().toString();
     }
 

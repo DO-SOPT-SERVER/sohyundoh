@@ -13,7 +13,6 @@ public class MemberGetResponse {
     private int age;
     private SOPT sopt;
 
-
     public static MemberGetResponse of(Member member) {
         return new MemberGetResponse(
                 member.getName(),
