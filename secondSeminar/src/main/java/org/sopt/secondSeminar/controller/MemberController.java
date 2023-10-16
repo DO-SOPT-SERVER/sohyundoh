@@ -27,6 +27,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+    private static final String LOCATION_PREFIX = "api/member";
 
     @GetMapping(value = "{memberId}/V2", produces = MediaType.APPLICATION_JSON_VALUE)
     public SuccessResponse<MemberGetResponse> getMemberProfileV2(
@@ -36,7 +37,7 @@ public class MemberController {
 
     @PostMapping
     public SuccessResponse createMember(@RequestBody MemberCreateRequest request, HttpServletResponse response) {
-        String location = "api/member/" + memberService.create(request);
+        String location = LOCATION_PREFIX + memberService.create(request);
         response.setHeader("Location", location);
         return SuccessResponse.success(SuccessMessage.MEMBER_CREATE_SUCCESS);
     }
