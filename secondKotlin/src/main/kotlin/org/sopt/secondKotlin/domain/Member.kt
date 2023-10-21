@@ -1,6 +1,10 @@
 package org.sopt.secondKotlin.domain
 
-import jakarta.persistence.*
+import jakarta.persistence.Embedded
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 import org.sopt.secondKotlin.dto.request.MemberCreateRequest
 
 @Entity
