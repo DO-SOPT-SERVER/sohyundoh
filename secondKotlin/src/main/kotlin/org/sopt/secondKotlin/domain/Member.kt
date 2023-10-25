@@ -18,7 +18,7 @@ class Member(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    val id: Long? = 0 //추후 테스트코드 작성을 위해 우선 기본생성자로 부여할 수 있게 하겠습니다
 ) {
     companion object{
         fun create(request: MemberCreateRequest): Member {

@@ -3,7 +3,7 @@ package org.sopt.secondKotlin.dto.response
 import org.sopt.secondKotlin.domain.Member
 import org.sopt.secondKotlin.domain.SOPT
 
-class MemberGetResponse(
+class MemberGetResponse private constructor(
     val name: String,
     val nickname: String,
     val age: Int,

@@ -6,6 +6,7 @@ import org.sopt.secondKotlin.dto.request.MemberCreateRequest
 import org.sopt.secondKotlin.dto.request.MemberProfileUpdateRequest
 import org.sopt.secondKotlin.dto.response.MemberGetResponse
 import org.sopt.secondKotlin.repository.MemberRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -26,18 +27,15 @@ class MemberService(
         memberId: Long,
         updateRequest: MemberProfileUpdateRequest
     ) {
-        val member: Member = memberRepository.findById(memberId).orElseThrow {
-            throw EntityNotFoundException("존재하지 않는 회원입니다.")
-        } //Nullable로 사용하는 방법 생각해보기
-
+        val member: Member =
+            memberRepository.findByIdOrNull(memberId) ?: throw EntityNotFoundException("존재하지 않는 회원입니다.")
     }
 
     fun getById(
         memberId: Long
     ): MemberGetResponse {
-        val member: Member = memberRepository.findById(memberId).orElseThrow {
-            throw EntityNotFoundException("존재하지 않는 회원입니다.")
-        }
+        val member: Member =
+            memberRepository.findByIdOrNull(memberId) ?: throw EntityNotFoundException("존재하지 않는 회원입니다.")
         return MemberGetResponse.of(member)
     }
 
@@ -51,9 +49,8 @@ class MemberService(
     fun delete(
         memberId: Long
     ) {
-        val member: Member = memberRepository.findById(memberId).orElseThrow {
-            EntityNotFoundException("존재하지 않는 회원입니다.")
-        }
+        val member: Member =
+            memberRepository.findByIdOrNull(memberId) ?: throw EntityNotFoundException("존재하지 않는 회원입니다.")
         memberRepository.delete(member)
     }
 }
