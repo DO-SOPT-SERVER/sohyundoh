@@ -31,12 +31,13 @@ public class MemberController {
 
     @GetMapping(value = "{memberId}/V2", produces = MediaType.APPLICATION_JSON_VALUE)
     public SuccessResponse<MemberGetResponse> getMemberProfileV2(
-            @PathVariable("memberId") Long memberId) {
+            @PathVariable("memberId") final Long memberId) {
         return SuccessResponse.success(SuccessMessage.MEMBER_SEARCH_SUCCESS, memberService.getById(memberId));
     }
 
     @PostMapping
-    public SuccessResponse createMember(@RequestBody MemberCreateRequest request, HttpServletResponse response) {
+    public SuccessResponse createMember(@RequestBody final MemberCreateRequest request,
+                                        final HttpServletResponse response) {
         String location = LOCATION_PREFIX + memberService.create(request);
         response.setHeader("Location", location);
         return SuccessResponse.success(SuccessMessage.MEMBER_CREATE_SUCCESS);
@@ -48,8 +49,8 @@ public class MemberController {
     }
 
     @PatchMapping("/{memberId}")
-    public SuccessResponse updateMemberSoptInfo(@PathVariable Long memberId,
-                                                @RequestBody MemberProfileUpdateRequest request) {
+    public SuccessResponse updateMemberSoptInfo(@PathVariable final Long memberId,
+                                                @RequestBody final MemberProfileUpdateRequest request) {
         memberService.updateSOPT(memberId, request);
         return SuccessResponse.success(SuccessMessage.MEMBER_UPDATE_SUCCESS);
     }

@@ -15,11 +15,11 @@ public class SuccessResponse<T> {
     private T data;
 
 
-    public static <T> SuccessResponse<T> success(SuccessMessage success, T data) {
+    public static <T> SuccessResponse<T> success(final SuccessMessage success, final T data) {
         return new SuccessResponse<>(success.getStatus().value(), success.getMessage(), data);
     }
 
-    public static SuccessResponse success(SuccessMessage success) {
+    public static SuccessResponse success(final SuccessMessage success) {
         return new SuccessResponse(success.getStatus().value(), success.getMessage());
     }
 }

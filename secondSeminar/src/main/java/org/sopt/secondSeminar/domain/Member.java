@@ -29,14 +29,17 @@ public class Member {
     private SOPT sopt;
 
     @Builder
-    private Member(String name, String nickname, int age, SOPT sopt) {
+    private Member(final String name,
+                   final String nickname,
+                   final int age,
+                   final SOPT sopt) {
         this.name = name;
         this.nickname = nickname;
         this.age = age;
         this.sopt = sopt;
     }
 
-    public static Member create(MemberCreateRequest request) {
+    public static Member create(final MemberCreateRequest request) {
         return Member.builder()
                 .name(request.name())
                 .nickname(request.nickname())
@@ -45,7 +48,7 @@ public class Member {
                 .build();
     }
 
-    public void updateSOPT(SOPT sopt) {
+    public void updateSOPT(final SOPT sopt) {
         this.sopt = sopt;
     }
 }

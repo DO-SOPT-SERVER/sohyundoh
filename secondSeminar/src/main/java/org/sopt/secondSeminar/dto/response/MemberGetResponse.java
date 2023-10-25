@@ -11,7 +11,7 @@ public record MemberGetResponse(
         SOPT sopt
 ) {
 
-    public static MemberGetResponse of(Member member) {
+    public static MemberGetResponse of(final Member member) {
         return new MemberGetResponse(
                 member.getName(),
                 member.getNickname(),
