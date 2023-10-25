@@ -1,10 +1,11 @@
 package org.sopt.secondSeminar.domain.enums;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Part {
     SERVER("서버"),
     WEB("웹"),
