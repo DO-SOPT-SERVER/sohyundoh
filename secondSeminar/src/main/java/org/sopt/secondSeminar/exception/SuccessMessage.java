@@ -15,6 +15,6 @@ public enum SuccessMessage {
     MEMBER_UPDATE_SUCCESS(HttpStatus.NO_CONTENT, "사용자 정보가 업데이트되었습니다."),
     MEMBER_DELETE_SUCCESS(HttpStatus.NO_CONTENT, "사용자 정보가 삭제되었습니다.");
 
-    HttpStatus status;
-    String message;
+    private final HttpStatus status;
+    private final String message;
 }

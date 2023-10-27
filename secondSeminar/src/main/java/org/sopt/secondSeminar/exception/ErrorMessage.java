@@ -11,6 +11,6 @@ public enum ErrorMessage {
 
     MEMBER_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "회원 정보가 존재하지 않습니다");
 
-    HttpStatus status;
-    String message;
+    private final HttpStatus status;
+    private final String message;
 }
