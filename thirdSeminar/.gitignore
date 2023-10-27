@@ -7,6 +7,8 @@ build/
 !**/src/main/resources/
 
 .DS_Store
+thirdSeminar/src/.DS_Store
+thirdSeminar/src/main/.DS_Store
 
 ### STS ###
 .apt_generated
