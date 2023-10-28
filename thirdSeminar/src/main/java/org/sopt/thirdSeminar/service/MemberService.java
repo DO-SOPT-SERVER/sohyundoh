@@ -1,6 +1,5 @@
 package org.sopt.thirdSeminar.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.sopt.thirdSeminar.Repository.MemberRepository;
 import org.sopt.thirdSeminar.domain.Member;
