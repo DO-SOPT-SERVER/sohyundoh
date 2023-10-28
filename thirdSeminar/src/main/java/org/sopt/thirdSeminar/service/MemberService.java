@@ -5,10 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.thirdSeminar.Repository.MemberRepository;
 import org.sopt.thirdSeminar.domain.Member;
 import org.sopt.thirdSeminar.domain.SOPT;
-import org.sopt.thirdSeminar.dto.request.MemberCreateRequest;
-import org.sopt.thirdSeminar.dto.request.MemberProfileUpdateRequest;
-import org.sopt.thirdSeminar.dto.response.MemberGetResponse;
+import org.sopt.thirdSeminar.dto.request.member.MemberCreateRequest;
+import org.sopt.thirdSeminar.dto.request.member.MemberProfileUpdateRequest;
+import org.sopt.thirdSeminar.dto.response.member.MemberGetResponse;
 import org.sopt.thirdSeminar.exception.ErrorMessage;
+import org.sopt.thirdSeminar.exception.model.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +25,7 @@ public class MemberService {
 
     public MemberGetResponse getById(final Long memberId) {
         return MemberGetResponse.of(memberRepository.findById(memberId)
-                .orElseThrow(() -> new EntityNotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION.getMessage())));
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION)));
     }
 
 

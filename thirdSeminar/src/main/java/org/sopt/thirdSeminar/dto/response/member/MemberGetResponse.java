@@ -1,4 +1,4 @@
-package org.sopt.thirdSeminar.dto.response;
+package org.sopt.thirdSeminar.dto.response.member;
 
 import org.sopt.thirdSeminar.domain.Member;
 import org.sopt.thirdSeminar.domain.SOPT;

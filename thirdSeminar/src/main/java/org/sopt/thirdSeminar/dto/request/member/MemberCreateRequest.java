@@ -1,4 +1,4 @@
-package org.sopt.thirdSeminar.dto.request;
+package org.sopt.thirdSeminar.dto.request.member;
 
 import org.sopt.thirdSeminar.domain.SOPT;
 
