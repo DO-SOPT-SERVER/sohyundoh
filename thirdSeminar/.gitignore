@@ -4,11 +4,11 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-!**/src/main/resources/
 
 .DS_Store
 thirdSeminar/src/.DS_Store
 thirdSeminar/src/main/.DS_Store
+thirdSeminar/src/main/resources/application.yml
 
 ### STS ###
 .apt_generated
