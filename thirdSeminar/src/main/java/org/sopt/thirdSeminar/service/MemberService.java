@@ -27,6 +27,10 @@ public class MemberService {
                 .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION)));
     }
 
+    public Member findById(final Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION));
+    }
 
     public List<MemberGetResponse> getMembers() {
         return memberRepository.findAll()

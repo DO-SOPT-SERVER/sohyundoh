@@ -1,9 +1,10 @@
 package org.sopt.thirdSeminar.service;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.thirdSeminar.Repository.MemberRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.sopt.thirdSeminar.Repository.PostRepository;
 import org.sopt.thirdSeminar.domain.Category;
+import org.sopt.thirdSeminar.domain.CategoryId;
 import org.sopt.thirdSeminar.domain.Member;
 import org.sopt.thirdSeminar.domain.Post;
 import org.sopt.thirdSeminar.dto.request.post.PostCreateRequest;
@@ -18,21 +19,28 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 @Transactional(readOnly = true)
 public class PostService {
 
     private final PostRepository postRepository;
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final CategoryService categoryService;
 
     @Transactional
     public String create(PostCreateRequest request, Long memberId) {
-        Member member = memberRepository.findByIdOrThrow(memberId);
+        Member member = memberService.findById(memberId);
+        //역할 분리
         Post post = postRepository.save(
                 Post.builder()
                         .member(member)
                         .title(request.title())
-                        .content(request.content()).build());
+                        .content(request.content())
+                        .categoryId(
+                                CategoryId.builder()
+                                        .categoryId(request.categoryId()) //메소드 체이닝이 너무 많음 -> categoryId를 request body에서 String으로 받기
+                                        .build())
+                        .build());
         return post.getId().toString();
     }
 
@@ -50,9 +58,7 @@ public class PostService {
     }
 
     public List<PostGetResponse> getPosts(Long memberId) {
-
-        postRepository.findAllByMember(memberRepository.findById(memberId).orElseThrow(() -> new NotFoundException(ErrorMessage.POST_NOT_FOUND_EXCEPTION)));
-        return postRepository.findAllByMemberId(memberId)
+        return postRepository.findAllByMember(memberService.findById(memberId))
                 .stream()
                 .map(post -> PostGetResponse.of(post, getCategoryByPost(post)))
                 .toList();
@@ -66,4 +72,5 @@ public class PostService {
     private Category getCategoryByPost(Post post) {
         return categoryService.getByCategoryId(post.getCategoryId());
     }
+
 }

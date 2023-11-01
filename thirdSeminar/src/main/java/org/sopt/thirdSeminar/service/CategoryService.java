@@ -22,8 +22,4 @@ public class CategoryService {
                 () -> new NotFoundException(ErrorMessage.CATEGORY_NOT_FOUND_EXCEPTION));
     }
 
-    public CategoryResponse getById(Short id) {
-        return CategoryResponse.of(categoryJpaRepository.findById(id).orElseThrow(
-                () -> new NotFoundException(ErrorMessage.CATEGORY_NOT_FOUND_EXCEPTION)));
-    }
 }
