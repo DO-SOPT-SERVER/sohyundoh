@@ -1,7 +1,6 @@
 package org.sopt.secondKotlin.global.advice
 
 import org.sopt.secondKotlin.exception.SoptException
-import org.sopt.secondKotlin.exception.enums.Error
 import org.sopt.secondKotlin.global.dto.ErrorResponse
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
