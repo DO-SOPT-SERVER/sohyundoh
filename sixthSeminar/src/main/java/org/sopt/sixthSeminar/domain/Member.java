@@ -10,7 +10,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.sopt.thirdSeminar.dto.request.member.MemberCreateRequest;
+import org.sopt.sixthSeminar.dto.request.member.MemberCreateRequest;
 
 @Entity
 @Getter

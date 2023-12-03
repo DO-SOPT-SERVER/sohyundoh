@@ -1,8 +1,8 @@
 package org.sopt.sixthSeminar.exception.handler;
 
-import org.sopt.thirdSeminar.common.dto.ErrorResponse;
-import org.sopt.thirdSeminar.exception.ErrorMessage;
-import org.sopt.thirdSeminar.exception.model.NotFoundException;
+import org.sopt.sixthSeminar.common.dto.ErrorResponse;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.sopt.thirdSeminar.exception.SuccessMessage;
+import org.sopt.sixthSeminar.exception.SuccessMessage;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)

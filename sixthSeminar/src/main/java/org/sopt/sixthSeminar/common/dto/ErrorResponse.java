@@ -3,7 +3,7 @@ package org.sopt.sixthSeminar.common.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import org.sopt.thirdSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
 
 @Getter
 @ToString

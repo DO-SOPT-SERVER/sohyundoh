@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.sopt.thirdSeminar.domain.enums.Part;
+import org.sopt.sixthSeminar.domain.enums.Part;
 
 import static jakarta.persistence.EnumType.STRING;
 

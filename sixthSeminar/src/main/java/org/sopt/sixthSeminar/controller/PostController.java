@@ -2,12 +2,13 @@ package org.sopt.sixthSeminar.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.sopt.thirdSeminar.common.dto.SuccessResponse;
-import org.sopt.thirdSeminar.dto.request.post.PostCreateRequest;
-import org.sopt.thirdSeminar.dto.request.post.PostUpdateRequest;
-import org.sopt.thirdSeminar.dto.response.post.PostGetResponse;
-import org.sopt.thirdSeminar.exception.SuccessMessage;
-import org.sopt.thirdSeminar.service.PostService;
+import org.sopt.sixthSeminar.common.dto.SuccessResponse;
+import org.sopt.sixthSeminar.dto.request.post.PostCreateRequest;
+import org.sopt.sixthSeminar.dto.request.post.PostUpdateRequest;
+import org.sopt.sixthSeminar.dto.response.post.PostGetResponse;
+import org.sopt.sixthSeminar.exception.SuccessMessage;
+import org.sopt.sixthSeminar.service.PostService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -41,12 +44,14 @@ public class PostController {
     }
 
     @PostMapping
-    public SuccessResponse createPost(@RequestHeader(CUSTOM_AUTH_ID) Long memberId,
-                                      @RequestBody final PostCreateRequest request,
-                                      final HttpServletResponse response) {
-        String location = LOCATION_PREFIX + postService.create(request, memberId);
-        response.setHeader("Location", location);
-        return SuccessResponse.success(SuccessMessage.MEMBER_CREATE_SUCCESS);
+    public ResponseEntity<Void> createPost(
+            @RequestBody PostCreateRequest request,
+            Principal principal) {
+
+        Long memberId = Long.valueOf(principal.getName());
+        URI location = URI.create("/api/posts/" + postService.create(request, memberId));
+
+        return ResponseEntity.created(location).build();
     }
 
     @PatchMapping("{postId}")

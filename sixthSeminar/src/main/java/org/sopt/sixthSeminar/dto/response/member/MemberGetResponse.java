@@ -1,7 +1,7 @@
 package org.sopt.sixthSeminar.dto.response.member;
 
-import org.sopt.thirdSeminar.domain.Member;
-import org.sopt.thirdSeminar.domain.SOPT;
+import org.sopt.sixthSeminar.domain.Member;
+import org.sopt.sixthSeminar.domain.SOPT;
 
 
 public record MemberGetResponse(

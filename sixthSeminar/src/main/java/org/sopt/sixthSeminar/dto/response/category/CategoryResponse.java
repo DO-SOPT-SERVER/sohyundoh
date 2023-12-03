@@ -1,6 +1,6 @@
 package org.sopt.sixthSeminar.dto.response.category;
 
-import org.sopt.thirdSeminar.domain.Category;
+import org.sopt.sixthSeminar.domain.Category;
 
 public record CategoryResponse(
         String category

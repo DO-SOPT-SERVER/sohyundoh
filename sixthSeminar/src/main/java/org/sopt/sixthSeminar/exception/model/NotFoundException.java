@@ -1,6 +1,6 @@
 package org.sopt.sixthSeminar.exception.model;
 
-import org.sopt.thirdSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
 
 public class NotFoundException extends GlobalException{
     public NotFoundException(ErrorMessage message) {

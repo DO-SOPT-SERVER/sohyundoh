@@ -26,6 +26,7 @@ public class Post extends BaseTimeEntity {
 
     private String title;
     private String content;
+    private String imageUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -40,6 +41,14 @@ public class Post extends BaseTimeEntity {
         this.content = content;
         this.member = member;
         this.categoryId = categoryId;
+    }
+
+    @Builder(builderMethodName = "builderWithImageUrl")
+    public Post(String title, String content, String imageUrl, Member member) {
+        this.title = title;
+        this.content = content;
+        this.imageUrl = imageUrl;
+        this.member = member;
     }
 
     public void updateContent(String content) {

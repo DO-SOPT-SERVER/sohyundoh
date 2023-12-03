@@ -14,6 +14,7 @@ public enum ErrorMessage {
     POST_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND,"해당 게시글은 존재하지 않습니다."),
     CATEGORY_NOT_FOUND_EXCEPTION(HttpStatus.NOT_FOUND, "해당 카테고리는 존재하지 않습니다.");
 
+
     private final HttpStatus status;
     private final String message;
 }

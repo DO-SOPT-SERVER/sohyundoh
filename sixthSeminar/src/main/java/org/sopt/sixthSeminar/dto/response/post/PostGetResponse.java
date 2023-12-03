@@ -1,8 +1,8 @@
 package org.sopt.sixthSeminar.dto.response.post;
 
-import org.sopt.thirdSeminar.domain.Category;
-import org.sopt.thirdSeminar.domain.Post;
-import org.sopt.thirdSeminar.service.CategoryService;
+import org.sopt.sixthSeminar.domain.Category;
+import org.sopt.sixthSeminar.domain.Post;
+import org.sopt.sixthSeminar.service.CategoryService;
 
 public record PostGetResponse(
         Long id,

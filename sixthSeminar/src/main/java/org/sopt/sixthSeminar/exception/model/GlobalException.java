@@ -1,7 +1,7 @@
 package org.sopt.sixthSeminar.exception.model;
 
 import lombok.Getter;
-import org.sopt.thirdSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
 
 @Getter
 public class GlobalException extends RuntimeException{

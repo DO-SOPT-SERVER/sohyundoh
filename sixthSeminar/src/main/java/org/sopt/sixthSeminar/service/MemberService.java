@@ -1,14 +1,14 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.thirdSeminar.Repository.MemberRepository;
-import org.sopt.thirdSeminar.domain.Member;
-import org.sopt.thirdSeminar.domain.SOPT;
-import org.sopt.thirdSeminar.dto.request.member.MemberCreateRequest;
-import org.sopt.thirdSeminar.dto.request.member.MemberProfileUpdateRequest;
-import org.sopt.thirdSeminar.dto.response.member.MemberGetResponse;
-import org.sopt.thirdSeminar.exception.ErrorMessage;
-import org.sopt.thirdSeminar.exception.model.NotFoundException;
+import org.sopt.sixthSeminar.repository.MemberRepository;
+import org.sopt.sixthSeminar.domain.Member;
+import org.sopt.sixthSeminar.domain.SOPT;
+import org.sopt.sixthSeminar.dto.request.member.MemberCreateRequest;
+import org.sopt.sixthSeminar.dto.request.member.MemberProfileUpdateRequest;
+import org.sopt.sixthSeminar.dto.response.member.MemberGetResponse;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,12 +1,11 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
-import org.sopt.thirdSeminar.Repository.CategoryRepository;
-import org.sopt.thirdSeminar.domain.Category;
-import org.sopt.thirdSeminar.domain.CategoryId;
-import org.sopt.thirdSeminar.dto.response.category.CategoryResponse;
-import org.sopt.thirdSeminar.exception.ErrorMessage;
-import org.sopt.thirdSeminar.exception.model.NotFoundException;
+import org.sopt.sixthSeminar.domain.Category;
+import org.sopt.sixthSeminar.domain.CategoryId;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.NotFoundException;
+import org.sopt.sixthSeminar.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
