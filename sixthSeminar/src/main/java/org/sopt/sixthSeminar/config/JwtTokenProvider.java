@@ -9,7 +9,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Date;
 
-@Slf4j
+
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
@@ -44,7 +43,6 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + TOKEN_EXPIRATION_TIME));  // 만료 시간 설정
 
         claims.put(MEMBER_ID, authentication.getPrincipal());
-        log.info((String) authentication.getPrincipal());
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE) // Header
                 .setClaims(claims) // Claim

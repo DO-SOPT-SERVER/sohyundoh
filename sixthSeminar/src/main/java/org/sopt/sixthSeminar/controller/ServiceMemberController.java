@@ -7,8 +7,6 @@ import org.sopt.sixthSeminar.dto.response.member.MemberSignInResponse;
 import org.sopt.sixthSeminar.exception.SuccessMessage;
 import org.sopt.sixthSeminar.service.ServiceMemberService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +22,13 @@ public class ServiceMemberController {
     private final ServiceMemberService serviceMemberService;
 
     @PostMapping("sign-up")
-    public ResponseEntity<Void> signUp(final @RequestBody ServiceMemberRequest request) {
-        URI location = URI.create(serviceMemberService.create(request));
-        return ResponseEntity.created(location).build();
+    public SuccessResponse signUp(final @RequestBody ServiceMemberRequest request) {
+        return SuccessResponse.success(SuccessMessage.MEMBER_CREATE_SUCCESS);
     }
 
     @PostMapping("sign-in")
     public SuccessResponse<MemberSignInResponse> signIn(final @RequestBody ServiceMemberRequest request) {
-        return SuccessResponse.success(SuccessMessage.MEMBER_SIGN_IN_SUCCESS ,
+        return SuccessResponse.success(SuccessMessage.MEMBER_SIGN_IN_SUCCESS,
                 serviceMemberService.signIn(request));
     }
 }

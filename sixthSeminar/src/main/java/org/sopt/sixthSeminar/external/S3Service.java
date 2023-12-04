@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetUrlRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class S3Service {
         RequestBody requestBody = RequestBody.fromBytes(image.getBytes());
         s3Client.putObject(request, requestBody);
 
-        return key;
+        return s3Client.utilities().getUrl(GetUrlRequest.builder().bucket(bucketName).key(key).build()).toString();
     }
 
     public void deleteImage(String key) throws IOException {

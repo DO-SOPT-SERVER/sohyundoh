@@ -6,6 +6,7 @@ import org.sopt.sixthSeminar.domain.Category;
 import org.sopt.sixthSeminar.domain.CategoryId;
 import org.sopt.sixthSeminar.domain.Member;
 import org.sopt.sixthSeminar.domain.Post;
+import org.sopt.sixthSeminar.domain.ServiceMember;
 import org.sopt.sixthSeminar.dto.request.post.PostCreateRequest;
 import org.sopt.sixthSeminar.dto.request.post.PostUpdateRequest;
 import org.sopt.sixthSeminar.dto.response.post.PostGetResponse;
@@ -24,25 +25,9 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final MemberService memberService;
+    private final ServiceMemberService serviceMemberService;
     private final CategoryService categoryService;
 
-    @Transactional
-    public String create(PostCreateRequest request, Long memberId) {
-        Member member = memberService.findById(memberId);
-        //역할 분리
-        Post post = postRepository.save(
-                Post.builder()
-                        .member(member)
-                        .title(request.title())
-                        .content(request.content())
-                        .categoryId(
-                                CategoryId.builder()
-                                        .categoryId(request.categoryId()) //메소드 체이닝이 너무 많음 -> categoryId를 request body에서 String으로 받기
-                                        .build())
-                        .build());
-        return post.getId().toString();
-    }
 
     @Transactional
     public void editContent(Long postId, PostUpdateRequest request) {
@@ -58,7 +43,7 @@ public class PostService {
     }
 
     public List<PostGetResponse> getPosts(Long memberId) {
-        return postRepository.findAllByMember(memberService.findById(memberId))
+        return postRepository.findAllByServiceMember(serviceMemberService.findById(memberId))
                 .stream()
                 .map(post -> PostGetResponse.of(post, getCategoryByPost(post)))
                 .toList();

@@ -30,25 +30,25 @@ public class Post extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private ServiceMember serviceMember;
 
     @Column(name = "category_id")
     private CategoryId categoryId;
 
     @Builder
-    private Post(String title, String content, Member member, CategoryId categoryId) {
+    private Post(String title, String content, ServiceMember serviceMember, CategoryId categoryId) {
         this.title = title;
         this.content = content;
-        this.member = member;
+        this.serviceMember = serviceMember;
         this.categoryId = categoryId;
     }
 
-    @Builder(builderMethodName = "builderWithImageUrl")
-    public Post(String title, String content, String imageUrl, Member member) {
+    @Builder(builderMethodName = "builderWithImageUrl", buildMethodName = "buildWithImageUrl")
+    public Post(String title, String content, String imageUrl, ServiceMember serviceMember) {
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
-        this.member = member;
+        this.serviceMember = serviceMember;
     }
 
     public void updateContent(String content) {
