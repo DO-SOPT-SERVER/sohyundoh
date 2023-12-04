@@ -1,9 +1,16 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
+import org.sopt.sixthSeminar.config.JwtTokenProvider;
 import org.sopt.sixthSeminar.domain.ServiceMember;
 import org.sopt.sixthSeminar.dto.request.serviceMember.ServiceMemberRequest;
+import org.sopt.sixthSeminar.dto.response.member.MemberSignInResponse;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.AuthException;
+import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.sopt.sixthSeminar.repository.ServiceMemberRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +22,7 @@ public class ServiceMemberService {
 
     private final ServiceMemberRepository serviceMemberJpaRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
     public String create(ServiceMemberRequest request) {
@@ -23,16 +31,17 @@ public class ServiceMemberService {
                 .password(passwordEncoder.encode(request.password()))
                 .build();
         serviceMemberJpaRepository.save(serviceMember);
-
         return serviceMember.getId().toString();
     }
 
-    public void signIn(ServiceMemberRequest request) {
+    public MemberSignInResponse signIn(ServiceMemberRequest request) {
         ServiceMember serviceMember = serviceMemberJpaRepository.findByNickname(request.nickname())
-                .orElseThrow(() -> new RuntimeException("해당하는 회원이 없습니다."));
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_EXCEPTION));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!passwordEncoder.matches(request.password(), serviceMember.getPassword())) {
-            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+            throw new AuthException(ErrorMessage.PASSWORD_INCORRECT_EXCEPTION);
         }
+        return MemberSignInResponse.of(jwtTokenProvider.generateToken(authentication));
     }
 
 }

@@ -2,6 +2,7 @@ package org.sopt.sixthSeminar.exception.handler;
 
 import org.sopt.sixthSeminar.common.dto.ErrorResponse;
 import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.AuthException;
 import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -12,6 +13,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResponse handleIllegalArgumentException(final IllegalArgumentException e) {
         return ErrorResponse.error(ErrorMessage.BAD_REQUEST_EXCEPTION);
+    }
+
+    @ExceptionHandler(AuthException.class)
+    public ErrorResponse handleUnAuthorizedException(final AuthException e) {
+        return ErrorResponse.error(e.getErrorMessage());
     }
 
     @ExceptionHandler(NotFoundException.class)

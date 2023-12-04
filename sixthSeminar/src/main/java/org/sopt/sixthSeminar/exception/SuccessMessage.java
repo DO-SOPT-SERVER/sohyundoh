@@ -11,6 +11,7 @@ public enum SuccessMessage {
 
     MEMBER_CREATE_SUCCESS(HttpStatus.CREATED, "사용자 정보가 생성되었습니다."),
     POST_CREATE_SUCCESS(HttpStatus.CREATED, "게시글 정보가 생성되었습니다."),
+    MEMBER_SIGN_IN_SUCCESS(HttpStatus.OK, "로그인이 완료되었습니다."),
     MEMBER_SEARCH_SUCCESS(HttpStatus.OK, "사용자 정보가 조회되었습니다 "),
     POST_DELETE_SUCCESS(HttpStatus.NO_CONTENT, "게시글이 삭제되었습니다."),
     POST_UPDATE_SUCCESS(HttpStatus.NO_CONTENT, "게시글이 업데이트되었습니다."),
