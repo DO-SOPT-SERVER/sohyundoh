@@ -1,7 +1,6 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.sopt.sixthSeminar.config.JwtTokenProvider;
 import org.sopt.sixthSeminar.config.authentication.UserAuthentication;
 import org.sopt.sixthSeminar.domain.ServiceMember;
@@ -11,13 +10,12 @@ import org.sopt.sixthSeminar.exception.ErrorMessage;
 import org.sopt.sixthSeminar.exception.model.AuthException;
 import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.sopt.sixthSeminar.repository.ServiceMemberRepository;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Slf4j
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -26,7 +24,6 @@ public class ServiceMemberService {
     private final ServiceMemberRepository serviceMemberJpaRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @Transactional
     public String create(final ServiceMemberRequest request) {

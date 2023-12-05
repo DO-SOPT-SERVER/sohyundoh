@@ -1,13 +1,8 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.sopt.sixthSeminar.domain.Category;
-import org.sopt.sixthSeminar.domain.CategoryId;
-import org.sopt.sixthSeminar.domain.Member;
 import org.sopt.sixthSeminar.domain.Post;
-import org.sopt.sixthSeminar.domain.ServiceMember;
-import org.sopt.sixthSeminar.dto.request.post.PostCreateRequest;
 import org.sopt.sixthSeminar.dto.request.post.PostUpdateRequest;
 import org.sopt.sixthSeminar.dto.response.post.PostGetResponse;
 import org.sopt.sixthSeminar.exception.ErrorMessage;
@@ -20,7 +15,6 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 @Transactional(readOnly = true)
 public class PostService {
 
