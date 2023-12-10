@@ -13,6 +13,7 @@ public enum ErrorMessage {
     FILE_EXTENSION_BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 확장자는 jpg, png, webp만 가능합니다."),
     FILE_SIZE_BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 사이즈는 5MB를 넘을 수 없습니다."),
     FILE_DELETE_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 삭제를 원할하게 처리하지 못하였습니다."),
+    FILE_POST_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 요청을 원활하게 처리하지 못하였습니다."),
     /*
     not found
      */

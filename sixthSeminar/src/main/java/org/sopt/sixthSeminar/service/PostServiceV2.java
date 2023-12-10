@@ -1,6 +1,7 @@
 package org.sopt.sixthSeminar.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.sopt.sixthSeminar.domain.Post;
 import org.sopt.sixthSeminar.domain.ServiceMember;
 import org.sopt.sixthSeminar.dto.request.post.PostCreateRequest;
@@ -18,6 +19,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class PostServiceV2 {
 
     private static final String POST_IMAGE_FOLDER_NAME = "posts/";
@@ -42,7 +44,8 @@ public class PostServiceV2 {
                             .buildWithImageUrl());
             return post.getId().toString();
         } catch (RuntimeException | IOException e) {
-            throw new FileBadRequestException(ErrorMessage.FILE_DELETE_EXCEPTION);
+            log.info(e.getMessage());
+            throw new FileBadRequestException(ErrorMessage.FILE_POST_EXCEPTION);
         }
     }
 
@@ -54,7 +57,8 @@ public class PostServiceV2 {
             s3Service.deleteImage(post.getImageUrl());
             postJpaRepository.deleteById(postId);
         } catch (IOException | RuntimeException e) {
-            throw new RuntimeException(e.getMessage());
+            log.info(e.getMessage());
+            throw new FileBadRequestException(ErrorMessage.FILE_DELETE_EXCEPTION);
         }
     }
 }
