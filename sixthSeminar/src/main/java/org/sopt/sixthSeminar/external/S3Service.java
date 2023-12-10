@@ -1,6 +1,8 @@
 package org.sopt.sixthSeminar.external;
 
 import org.sopt.sixthSeminar.config.AwsConfig;
+import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.FileBadRequestException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,13 +61,13 @@ public class S3Service {
     private void validateExtension(MultipartFile image) {
         String contentType = image.getContentType();
         if (!IMAGE_EXTENSIONS.contains(contentType)) {
-            throw new RuntimeException("이미지 확장자는 jpg, png, webp만 가능합니다.");
+            throw new FileBadRequestException(ErrorMessage.FILE_EXTENSION_BAD_REQUEST_EXCEPTION);
         }
     }
 
     private void validateFileSize(MultipartFile image) {
         if (image.getSize() > MAX_FILE_SIZE) {
-            throw new RuntimeException("이미지 사이즈는 5MB를 넘을 수 없습니다.");
+            throw new FileBadRequestException(ErrorMessage.FILE_SIZE_BAD_REQUEST_EXCEPTION);
         }
     }
 

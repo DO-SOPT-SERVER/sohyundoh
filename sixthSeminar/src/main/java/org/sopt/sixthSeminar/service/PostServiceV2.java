@@ -5,6 +5,7 @@ import org.sopt.sixthSeminar.domain.Post;
 import org.sopt.sixthSeminar.domain.ServiceMember;
 import org.sopt.sixthSeminar.dto.request.post.PostCreateRequest;
 import org.sopt.sixthSeminar.exception.ErrorMessage;
+import org.sopt.sixthSeminar.exception.model.FileBadRequestException;
 import org.sopt.sixthSeminar.exception.model.NotFoundException;
 import org.sopt.sixthSeminar.external.S3Service;
 import org.sopt.sixthSeminar.repository.PostRepository;
@@ -41,7 +42,7 @@ public class PostServiceV2 {
                             .buildWithImageUrl());
             return post.getId().toString();
         } catch (RuntimeException | IOException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new FileBadRequestException(ErrorMessage.FILE_DELETE_EXCEPTION);
         }
     }
 

@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 public enum ErrorMessage {
 
     BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
+    FILE_EXTENSION_BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 확장자는 jpg, png, webp만 가능합니다."),
+    FILE_SIZE_BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 사이즈는 5MB를 넘을 수 없습니다."),
+    FILE_DELETE_EXCEPTION(HttpStatus.BAD_REQUEST, "이미지 삭제를 원할하게 처리하지 못하였습니다."),
     /*
     not found
      */
